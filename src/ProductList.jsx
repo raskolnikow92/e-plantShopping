@@ -6,9 +6,12 @@ import { addItem } from './CartSlice';
 function ProductList({ onHomeClick }) {
     const [showCart, setShowCart] = useState(false);
     const [showPlants, setShowPlants] = useState(false); // State to control the visibility of the About Us page
-    const [addedToCart, setAddedToCart] = useState(useSelector(state => state.cart.items))
+    const [addedToCart, setAddedToCart] = useState(useSelector(state => state.cart.items));
+    const cart = useSelector(state => state.cart.items);
     const dispatch = useDispatch();
-
+    useEffect(()=>{
+        setAddedToCart(cart);
+    },[cart])
     const plantsArray = [
         {
             category: "Air Purifying Plants",
@@ -297,13 +300,13 @@ function ProductList({ onHomeClick }) {
                                     <img className='product-image' src={plant.image}/>
                                     <p className='product-price'>{plant.cost}</p>
                                     <p>{plant.description}</p>
-                                    <button type="submit" onClick={handleAddToCart} disabled={addedToCart[plant.name]}>Add to Cart</button>
+                                    <button type="submit" onClick={()=>{handleAddToCart(plant)}} disabled={addedToCart[plant.name]}>Add to Cart</button>
                                 </li>
                                 )}
                             </ul>
                             </div>
                         )
-                    })
+                    }
                 </div>
             ) : (
                 <CartItem onContinueShopping={handleContinueShopping} />
