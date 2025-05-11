@@ -6,12 +6,9 @@ import { addItem } from './CartSlice';
 function ProductList({ onHomeClick }) {
     const [showCart, setShowCart] = useState(false);
     const [showPlants, setShowPlants] = useState(false); // State to control the visibility of the About Us page
-    const [addedToCart, setAddedToCart] = useState(useSelector(state => state.cart.items));
-    const cart = useSelector(state => state.cart.items);
+    const [addedToCart, setAddedToCart] = useState({});
     const dispatch = useDispatch();
-    useEffect(()=>{
-        setAddedToCart(cart);
-    },[cart])
+
     const plantsArray = [
         {
             category: "Air Purifying Plants",
