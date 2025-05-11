@@ -258,6 +258,7 @@ function ProductList({ onHomeClick }) {
     };
 
     const handleAddToCart = (product) => {
+        console.log(product)
         dispatch(addItem(product));
         setAddedToCart(prevState => ({
             ...prevState,
@@ -296,7 +297,7 @@ function ProductList({ onHomeClick }) {
                                     <img className='product-image' src={plant.image}/>
                                     <p className='product-price'>{plant.cost}</p>
                                     <p>{plant.description}</p>
-                                    <button type="submit" onClick={handleAddToCart}>Add to Cart</button>
+                                    <button type="submit" onClick={handleAddToCart} disabled={addedToCart[plant.name]}>Add to Cart</button>
                                 </li>
                                 )}
                             </ul>
